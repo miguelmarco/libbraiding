@@ -3306,6 +3306,49 @@ bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
   return false;
 } 
 
+list<sint16> ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
+{
+    ArtinBraid B1=ArtinBraid(n);
+    ArtinBraid B2=ArtinBraid(n);
+    ArtinBraid C = ArtinBraid(n);
+    bool conj;
+    list<sint16> rop; 
+    list<ArtinFactor>::iterator it;
+    ArtinFactor F=ArtinFactor(n);
+    sint16 i, j, k;
+    B1 = WordToBraid(word, n);
+    B2 = WordToBraid(word2, n);
+    B1.MakeLCF();
+    B2.MakeLCF();
+    C = ArtinBraid(n);
+    conj = AreConjugate(B1,B2,C);
+    if (conj)
+    {
+        rop.push_back(C.LeftDelta);
+        F = ArtinFactor(n);
+        for(it=C.FactorList.begin(); it!=C.FactorList.end(); it++)
+        {
+            F = *it;
+            for(i=2; i<=n; i++)
+            {
+                for(j=i; j>1 && F[j]<F[j-1]; j--)
+                {
+                    rop.push_back(j-1);
+                    k=F[j];
+                    F[j]=F[j-1];
+                    F[j-1]=k;
+                }
+            }
+        }
+        return rop;
+    }
+    else
+    {
+        return rop;
+    }
 }
+
+}
+ 
  
  
