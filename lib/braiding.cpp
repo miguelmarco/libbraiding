@@ -3304,18 +3304,43 @@ bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
       it++;
     }
   return false;
-} 
+}
 
-list<sint16> ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
+list<list<sint16> > BraidToList(sint16 n, ArtinBraid B)
+{
+    ArtinFactor F = ArtinFactor(n);
+    list<ArtinFactor>::iterator it;
+    list<sint16> aux;
+    list<list<sint16> > rop;
+    aux.push_back(B.LeftDelta);
+    rop.push_back(aux);
+    int i,j,k;
+    for(it=B.FactorList.begin(); it!=B.FactorList.end(); it++)
+        {
+            aux.clear();
+            F = *it;
+            for(i=2; i<=n; i++)
+            {
+                for(j=i; j>1 && F[j]<F[j-1]; j--)
+                {
+                    aux.push_back(j-1);
+                    k=F[j];
+                    F[j]=F[j-1];
+                    F[j-1]=k;
+                }
+            }
+            rop.push_back(aux);
+        }
+    return rop;
+}
+
+list<list<sint16> > ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
 {
     ArtinBraid B1=ArtinBraid(n);
     ArtinBraid B2=ArtinBraid(n);
     ArtinBraid C = ArtinBraid(n);
     bool conj;
-    list<sint16> rop; 
-    list<ArtinFactor>::iterator it;
-    ArtinFactor F=ArtinFactor(n);
-    sint16 i, j, k;
+    list<list<sint16> > rop; 
     B1 = WordToBraid(word, n);
     B2 = WordToBraid(word2, n);
     B1.MakeLCF();
@@ -3324,23 +3349,7 @@ list<sint16> ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
     conj = AreConjugate(B1,B2,C);
     if (conj)
     {
-        rop.push_back(C.LeftDelta);
-        F = ArtinFactor(n);
-        for(it=C.FactorList.begin(); it!=C.FactorList.end(); it++)
-        {
-            F = *it;
-            for(i=2; i<=n; i++)
-            {
-                for(j=i; j>1 && F[j]<F[j-1]; j--)
-                {
-                    rop.push_back(j-1);
-                    k=F[j];
-                    F[j]=F[j-1];
-                    F[j-1]=k;
-                }
-            }
-        }
-        return rop;
+        return BraidToList(n, C);
     }
     else
     {
@@ -3348,7 +3357,59 @@ list<sint16> ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
     }
 }
 
+list<list<sint16> > LeftNormalForm(sint16 n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B  = WordToBraid(word, n);
+    B.MakeLCF();
+    return BraidToList(n, B);
 }
+
+list<list<sint16> > GreatestCommonDivisor(sint16 n, list<sint16> word1, list<sint16> word2)
+{
+   ArtinBraid B1 = ArtinBraid(n);
+   ArtinBraid B2 = ArtinBraid(n);
+   B1 = WordToBraid(word1, n);
+   B2 = WordToBraid(word2, n);
+   B1.MakeLCF();
+   B2.MakeLCF();
+   ArtinBraid C = ArtinBraid(C);
+   C = LeftMeet(B1, B2);
+   return BraidToList(n, C);
+}
+
+list<list<sint16> > LeastCommonMultiple(sint16 n, list<sint16> word1, list<sint16> word2)
+{
+   ArtinBraid B1 = ArtinBraid(n);
+   ArtinBraid B2 = ArtinBraid(n);
+   B1 = WordToBraid(word1, n);
+   B2 = WordToBraid(word2, n);
+   B1.MakeLCF();
+   B2.MakeLCF();
+   ArtinBraid C = ArtinBraid(C);
+   C = LeftWedge(B1, B2);
+   return BraidToList(n, C);
+}
+
+list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    list<ArtinBraid> Cent;
+    list<ArtinBraid>::iterator it;
+    list<list<list<sint16> > > rop;
+    Cent = Centralizer(B);
+    for (it=Cent.begin(); it != Cent.end(); it++)
+    {
+        rop.push_back(BraidToList(n, *it));
+    }
+    return rop;
+}
+
+    
+}
+
  
  
  

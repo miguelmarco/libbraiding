@@ -814,7 +814,11 @@ bool AreConjugateSC(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C);
 bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C);
 
 
-list<sint16> ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2);
+list<list<sint16> > ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2);
+list<list<sint16> > LeftNormalForm(sint16 n, list<sint16> word);
+list<list<sint16> > GreatestCommonDivisor(sint16 n, list<sint16> word1, list<sint16> word2);
+list<list<sint16> > LeastCommonMultiple(sint16 n, list<sint16> word1, list<sint16> word2);
+list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word);
 
 
 
