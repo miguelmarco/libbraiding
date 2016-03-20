@@ -3407,6 +3407,21 @@ list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word)
     return rop;
 }
 
+list<list<list<sint16> > > SuperSummitSet(int n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    list<ArtinBraid> sss;
+    list<ArtinBraid>::iterator it;
+    list<list<list<sint16> > > rop;
+    sss = SSS(B);
+    for (it=sss.begin(); it != sss.end(); it++)
+    {
+        rop.push_back(BraidToList(n, *it));
+    }
+    return rop;
+}
     
 }
 

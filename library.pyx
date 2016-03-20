@@ -9,6 +9,7 @@ cdef extern from "braiding.h" namespace "Braiding":
     list[list[int]] GreatestCommonDivisor(int n, list[int] word1, list[int] word2)
     list[list[int]] LeastCommonMultiple(int n, list[int] word1, list[int] word2)
     list[list[list[int]]] CentralizerGenerators(int n, list[int] word)
+    list[list[list[int]]] SuperSummitSet(int n, list[int] word)
     
 def conjugatingbraid(braid1, braid2):
     nstrands = max(braid1.parent().strands(), braid2.parent().strands())
@@ -50,5 +51,13 @@ def centralizer(braid):
     l = braid.Tietze()
     sig_on()
     cdef list[list[list[int]]] rop = CentralizerGenerators(nstrands, l)
+    sig_off()
+    return rop
+    
+def supersummitset(braid):
+    nstrands = braid.parent().strands()
+    l = braid.Tietze()
+    sig_on()
+    cdef list[list[list[int]]] rop = SuperSummitSet(nstrands, l)
     sig_off()
     return rop

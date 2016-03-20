@@ -819,6 +819,7 @@ list<list<sint16> > LeftNormalForm(sint16 n, list<sint16> word);
 list<list<sint16> > GreatestCommonDivisor(sint16 n, list<sint16> word1, list<sint16> word2);
 list<list<sint16> > LeastCommonMultiple(sint16 n, list<sint16> word1, list<sint16> word2);
 list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word);
+list<list<list<sint16> > > SuperSummitSet(int n, list<sint16> word);
 
 
 
