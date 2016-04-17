@@ -3306,6 +3306,10 @@ bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
   return false;
 }
 
+
+// Representation of braids as a list of lists
+// The first list contains the power of delta
+// The subsequent lists are the Tietze lists of the elementary parts
 list<list<sint16> > BraidToList(sint16 n, ArtinBraid B)
 {
     ArtinFactor F = ArtinFactor(n);
@@ -3333,6 +3337,44 @@ list<list<sint16> > BraidToList(sint16 n, ArtinBraid B)
         }
     return rop;
 }
+
+// Representation of braids in roght normal form as a list of lists
+// The first lists are the Tietze lists of the elemntary parts
+// The last list contains the power of Delta
+list<list<sint16> > BraidToListRight(sint16 n, ArtinBraid B)
+{
+    ArtinFactor F = ArtinFactor(n);
+    list<ArtinFactor>::iterator it;
+    list<sint16> aux;
+    list<list<sint16> > rop;
+    int i,j,k;
+    for(it=B.FactorList.begin(); it!=B.FactorList.end(); it++)
+        {
+            aux.clear();
+            F = *it;
+            for(i=2; i<=n; i++)
+            {
+                for(j=i; j>1 && F[j]<F[j-1]; j--)
+                {
+                    aux.push_back(j-1);
+                    k=F[j];
+                    F[j]=F[j-1];
+                    F[j-1]=k;
+                }
+            }
+            rop.push_back(aux);
+        }
+    aux.clear();
+    aux.push_back(B.RightDelta);
+    rop.push_back(aux);
+    return rop;
+}
+
+//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Functions to be called from external programs.                   //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
 
 list<list<sint16> > ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> word2)
 {
@@ -3363,6 +3405,14 @@ list<list<sint16> > LeftNormalForm(sint16 n, list<sint16> word)
     B  = WordToBraid(word, n);
     B.MakeLCF();
     return BraidToList(n, B);
+}
+
+list<list<sint16> > RightNormalForm(sint16 n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B  = WordToBraid(word, n);
+    B.MakeRCF();
+    return BraidToListRight(n, B);
 }
 
 list<list<sint16> > GreatestCommonDivisor(sint16 n, list<sint16> word1, list<sint16> word2)
