@@ -26,6 +26,8 @@ cdef extern from "braiding.h" namespace "Braiding":
     list[list[int]] LeastCommonMultiple(int n, list[int] word1, list[int] word2)
     list[list[list[int]]] CentralizerGenerators(int n, list[int] word)
     list[list[list[int]]] SuperSummitSet(int n, list[int] word)
+    list[list[list[list[int]]]] UltraSummitSet(int n, list[int] word)
+    int thurstontype(int n, list[int] word);
     
 def conjugatingbraid(braid1, braid2):
     r"""
@@ -143,3 +145,31 @@ def supersummitset(braid):
     cdef list[list[list[int]]] rop = SuperSummitSet(nstrands, l)
     sig_off()
     return rop
+
+def ultrasummitset(braid):
+    r"""
+    Return a list with the ultra-summit-set of the braid.
+    """
+    nstrands = braid.parent().strands()
+    l = braid.Tietze()
+    sig_on()
+    cdef list[list[list[list[int]]]] rop = UltraSummitSet(nstrands, l)
+    sig_off()
+    return rop
+
+
+def thurston_type(braid):
+    r"""
+    Return the Thurston type of the braid
+    """
+    nstrands = braid.parent().strands()
+    l = braid.Tietze()
+    sig_on()
+    cdef int i = thurstontype(nstrands, l)
+    sig_off()
+    if i == 1:
+        return 'periodic'
+    elif i==2:
+        return 'reducible'
+    elif i==3:
+        return 'pseudo-anosov'

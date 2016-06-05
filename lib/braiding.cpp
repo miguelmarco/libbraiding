@@ -3472,7 +3472,41 @@ list<list<list<sint16> > > SuperSummitSet(int n, list<sint16> word)
     }
     return rop;
 }
-    
+
+list<list<list<list<sint16> > > > UltraSummitSet(int n, list<sint16> word) // 1: periodic, 2: reducible, 3: pseudo-Anosov.
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    list<list<ArtinBraid> > uss = USS(B);
+    list<list<ArtinBraid> >::iterator it;
+    list<ArtinBraid>::iterator itb;
+    list<list<list<list<sint16> > > > rop;
+    list<list<list<sint16> > > ropp;
+    for(it=uss.begin(); it!=uss.end(); it++)
+    {
+        ropp.clear();
+        for(itb=(*it).begin(); itb!=(*it).end(); itb++)
+        {
+            ropp.push_back(BraidToList(n, *itb));
+        }
+        rop.push_back(ropp);
+    }
+
+    return rop;
+}
+
+sint16 thurstontype(int n, list<sint16> word) // 1: periodic, 2: reducible, 3: pseudo-Anosov.
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    int type = ThurstonType(B);
+    return type;
+}
+
+
+
 }
 
  

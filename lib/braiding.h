@@ -827,8 +827,8 @@ list<list<sint16> > GreatestCommonDivisor(sint16 n, list<sint16> word1, list<sin
 list<list<sint16> > LeastCommonMultiple(sint16 n, list<sint16> word1, list<sint16> word2);
 list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word);
 list<list<list<sint16> > > SuperSummitSet(int n, list<sint16> word);
-
-
+list<list<list<list<sint16> > > > UltraSummitSet(int n, list<sint16> word);
+sint16 thurstontype(int n, list<sint16> word);
 
 
 } // namespace Braiding
