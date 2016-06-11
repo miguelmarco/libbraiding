@@ -45,6 +45,15 @@ def conjugatingbraid(braid1, braid2):
     
     The list of lists that represent a conjugating braid. If the input braids
     are not conjugate, an empty list is returned.
+    
+    EXAMPLES::
+    
+        sage: B = BraidGroup(3)
+        sage: b = B([1,2,1,-2])
+        sage: c = B([1,2])
+        sage: conjugatingbraid(b,c)  # optional - libbraiding
+        [[0], [2]]
+        
     """
     nstrands = max(braid1.parent().strands(), braid2.parent().strands())
     l1 = braid1.Tietze()
@@ -66,6 +75,14 @@ def leftnormalform(braid):
     
     A list of lists with the left normal form. The first list contains the
     power of delta. The subsequent lists are the elementary permutation braids.
+    
+    EXAMPLES::
+    
+        sage: B = BraidGroup(3)
+        sage: b = B([1,2,1,-2])
+        sage: leftnormalform(b) # optional - libbraiding
+        [[0], [2, 1]]
+
     """
     nstrands = braid.parent().strands()
     l1 = braid.Tietze()
@@ -86,6 +103,14 @@ def rightnormalform(braid):
     
     A list of lists with the right normal form. The first list contains the
     power of delta. The subsequent lists are the elementary permutation braids.
+    
+    EXAMPLES::
+    
+        sage: B = BraidGroup(3)
+        sage: b = B([1,2,1,-2])
+        sage: rightnormalform(b) # optional - libbraiding
+        [[2, 1], [0]]
+    
     """
     nstrands = braid.parent().strands()
     l1 = braid.Tietze()
