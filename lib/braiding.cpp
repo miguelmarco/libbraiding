@@ -3505,10 +3505,36 @@ sint16 thurstontype(int n, list<sint16> word) // 1: periodic, 2: reducible, 3: p
     return type;
 }
 
-
-
+sint16 Rigidity_ext(int n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    int rig = Rigidity(B);
+    return rig;
 }
 
- 
- 
- 
+list<list<list<list<sint16> > > > SlidingCircuits(int n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    list<list<ArtinBraid> > sc = SC(B);
+    list<list<ArtinBraid> >::iterator it;
+    list<ArtinBraid>::iterator itb;
+    list<list<list<list<sint16> > > > rop;
+    list<list<list<sint16> > > ropp;
+    for(it=sc.begin(); it!=sc.end(); it++)
+    {
+        ropp.clear();
+        for(itb=(*it).begin(); itb!=(*it).end(); itb++)
+        {
+            ropp.push_back(BraidToList(n, *itb));
+        }
+        rop.push_back(ropp);
+    }
+
+    return rop;
+}
+
+}

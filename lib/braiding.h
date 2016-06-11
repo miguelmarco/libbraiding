@@ -829,6 +829,8 @@ list<list<list<sint16> > > CentralizerGenerators(int n, list<sint16> word);
 list<list<list<sint16> > > SuperSummitSet(int n, list<sint16> word);
 list<list<list<list<sint16> > > > UltraSummitSet(int n, list<sint16> word);
 sint16 thurstontype(int n, list<sint16> word);
+sint16 Rigidity_ext(int n, list<sint16> word);
+list<list<list<list<sint16> > > > SlidingCircuits(int n, list<sint16> word);
 
 
 } // namespace Braiding
