@@ -725,7 +725,7 @@ ArtinFactor Pullback_Sliding(ArtinBraid B, ArtinFactor F);
 
 ArtinFactor MainPullback_Sliding(ArtinBraid B, ArtinFactor F);
 
-// María Cumplido Cabello
+// Maria Cumplido Cabello
 
 
 /////////////////////////////////////////////////////////////
