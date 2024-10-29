@@ -2273,7 +2273,7 @@ char * FileName(sint16 iteration, sint16 max_iteration, sint16 type, sint16 orbi
 
 ///////////////////////////////////////////////////////
 //
-//  Reverse(B)  computes the revese of a braid B, 
+//  Reverse(B)  computes the revese of a braid B,
 //              that is, B written backwards.
 //              B must be given in left canonical form.
 //
@@ -2284,7 +2284,7 @@ char * FileName(sint16 iteration, sint16 max_iteration, sint16 type, sint16 orbi
   sint16 i, l=CL(B);
   ArtinBraid B2=ArtinBraid(B.Index());
   B2.RightDelta=B.LeftDelta;
-  
+
   for(i=0;i<l;i++)
   {
    B2.FactorList.push_front(!B.FactorList.front());
@@ -2299,9 +2299,9 @@ char * FileName(sint16 iteration, sint16 max_iteration, sint16 type, sint16 orbi
 
 /////////////////////////////////////////////////////////////
 //
-//  RightMeet(B1,B2)  Given two braids B1 and B2, computes  
+//  RightMeet(B1,B2)  Given two braids B1 and B2, computes
 //                    their right gcd. That is, the greatest braid
-//                    B such that B1>B and B2>B. 
+//                    B such that B1>B and B2>B.
 //
 /////////////////////////////////////////////////////////////
 
@@ -2317,9 +2317,9 @@ ArtinBraid RightMeet(ArtinBraid B1, ArtinBraid B2)
 
 /////////////////////////////////////////////////////////////
 //
-//  LeftJoin(B1,B2)  Given two braids B1 and B2, computes  
+//  LeftJoin(B1,B2)  Given two braids B1 and B2, computes
 //                    their left lcm. That is, the smallest braid
-//                    B such that B1<B and B2<B. 
+//                    B such that B1<B and B2<B.
 //
 /////////////////////////////////////////////////////////////
 
@@ -2334,7 +2334,7 @@ ArtinBraid LeftJoin(ArtinBraid B1, ArtinBraid B2)
  B1.MakeLCF();
  B2.MakeLCF();
 
- shift=(B1.LeftDelta < B2.LeftDelta ? B1.LeftDelta : B2.LeftDelta ); 
+ shift=(B1.LeftDelta < B2.LeftDelta ? B1.LeftDelta : B2.LeftDelta );
 
  B1.LeftDelta-=shift;
  B2.LeftDelta-=shift;
@@ -2342,10 +2342,10 @@ ArtinBraid LeftJoin(ArtinBraid B1, ArtinBraid B2)
 
  B=B1;
 
- while(!B2.CompareWithIdentity()) 
+ while(!B2.CompareWithIdentity())
  {
   if(B2.LeftDelta>0)
-    F2=ArtinFactor(n,1); 
+    F2=ArtinFactor(n,1);
   else if(CL(B2)==0)
     F2=ArtinFactor(n,0);
   else
@@ -2370,7 +2370,7 @@ ArtinBraid LeftJoin(ArtinBraid B1, ArtinBraid B2)
 
  }
 
- 
+
  B.MakeLCF();
  B.LeftDelta+=shift;
  return B;
@@ -2381,9 +2381,9 @@ ArtinBraid LeftJoin(ArtinBraid B1, ArtinBraid B2)
 }
 /////////////////////////////////////////////////////////////
 //
-//  RightJoin(B1,B2)  Given two braids B1 and B2, computes  
+//  RightJoin(B1,B2)  Given two braids B1 and B2, computes
 //                    their right lcm. That is, the smallest braid
-//                    B such that B>B1 and B>B2. 
+//                    B such that B>B1 and B>B2.
 //
 /////////////////////////////////////////////////////////////
 
@@ -2394,7 +2394,7 @@ ArtinBraid RightJoin(ArtinBraid B1, ArtinBraid B2)
 
 ///////////////////////////////////////////////////////
 //
-//  InitialFactor(B)  computes the initial factor of a braid B, 
+//  InitialFactor(B)  computes the initial factor of a braid B,
 //                    given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -2404,7 +2404,7 @@ ArtinFactor  InitialFactor(ArtinBraid B)
  sint16 n=B.Index();
  ArtinFactor F=ArtinFactor(n,0);
 
- if(CL(B)>0) 
+ if(CL(B)>0)
    F=(B.FactorList.front()).Flip(-B.LeftDelta);
 
  return F;
@@ -2413,7 +2413,7 @@ ArtinFactor  InitialFactor(ArtinBraid B)
 
 ///////////////////////////////////////////////////////
 //
-//  PreferredPrefix(B)  computes the preferred prefix of a braid B, 
+//  PreferredPrefix(B)  computes the preferred prefix of a braid B,
 //                      given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -2422,7 +2422,7 @@ ArtinFactor  PreferredPrefix(ArtinBraid B)
 {
 ArtinFactor F=ArtinFactor(B.Index(),0);
 
-if(CL(B)>0) 
+if(CL(B)>0)
   F=LeftMeet(InitialFactor(B),~B.FactorList.back());
 
 return F;
@@ -2433,7 +2433,7 @@ return F;
 
 ///////////////////////////////////////////////////////
 //
-//  Sliding(B)  computes the cyclic sliding of a braid B, 
+//  Sliding(B)  computes the cyclic sliding of a braid B,
 //                given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -2448,15 +2448,15 @@ return F;
   F=PreferredPrefix(B);
   B.FactorList.front()=(!(F.Flip(B.LeftDelta)))*B.FactorList.front();
   B.FactorList.push_back(F);
-     
-  return B.MakeLCF(); 
+
+  return B.MakeLCF();
 }
 
 
 
 ///////////////////////////////////////////////////////
 //
-//  PreferredSuffix(B)  computes the preferred suffix of a braid B, 
+//  PreferredSuffix(B)  computes the preferred suffix of a braid B,
 //                      given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -2473,9 +2473,9 @@ ArtinFactor  PreferredSuffix(ArtinBraid B)
 
 /////////////////////////////////////////////////////////////
 //
-//  Trajectory_Sliding(B)  Computes the trajectory under cyclic sliding 
-//                         of a braid B, that is, a list containing eta^k(B), 
-//                         for k=0,1,... until the first repetition. 
+//  Trajectory_Sliding(B)  Computes the trajectory under cyclic sliding
+//                         of a braid B, that is, a list containing eta^k(B),
+//                         for k=0,1,... until the first repetition.
 //
 /////////////////////////////////////////////////////////////
 
@@ -2501,7 +2501,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B)
 
 /////////////////////////////////////////////////////////////
 //
-//  Trajectory_Sliding(B,C,d)  Computes the trajectory of a braid B for cyclic sliding,   
+//  Trajectory_Sliding(B,C,d)  Computes the trajectory of a braid B for cyclic sliding,
 //                     a braid C that conjugates B to the
 //                     first element of a closed orbit under sliding,
 //                     and the number d of slidings needed to reach that element
@@ -2512,7 +2512,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B, ArtinBraid & C, sint16 & d)
 {
   list<ArtinBraid > p;
   list<ArtinBraid>::iterator it;
- 
+
   sint16 n=B.Index();
   C=ArtinBraid(n);
   d=0;
@@ -2531,7 +2531,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B, ArtinBraid & C, sint16 & d)
   C2.RightMultiply(PreferredPrefix(B));
   B2=Sliding(B);
   d--;
-  while(B2!=B)  
+  while(B2!=B)
   {
   C2.RightMultiply(PreferredPrefix(B2));
   B2=Sliding(B2);
@@ -2553,7 +2553,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B, ArtinBraid & C, sint16 & d)
 
 /////////////////////////////////////////////////////////////
 //
-//  SendToSC(B)  Computes a braid conjugate to B that 
+//  SendToSC(B)  Computes a braid conjugate to B that
 //                belongs to its Sliding Circuits Set.
 //
 /////////////////////////////////////////////////////////////
@@ -2562,7 +2562,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B, ArtinBraid & C, sint16 & d)
 ArtinBraid SendToSC(ArtinBraid B)
 {
   list<ArtinBraid> T=Trajectory_Sliding(B);
-  return Sliding(T.back()); 
+  return Sliding(T.back());
 }
 
 
@@ -2576,8 +2576,8 @@ ArtinBraid SendToSC(ArtinBraid B)
 
 /////////////////////////////////////////////////////////////
 //
-//  SendToSC(B,C)  Computes a braid conjugate to B that 
-//                  belongs to its Sliding Circuits Set, and a braid 
+//  SendToSC(B,C)  Computes a braid conjugate to B that
+//                  belongs to its Sliding Circuits Set, and a braid
 //                  C that conjugates B to the result.
 //
 /////////////////////////////////////////////////////////////
@@ -2609,7 +2609,7 @@ ArtinBraid SendToSC(ArtinBraid B, ArtinBraid & C)
 ArtinFactor Transport_Sliding(ArtinBraid B, ArtinFactor F)
 {
 ArtinBraid B2=((!ArtinBraid(F))*B*F).MakeLCF();
-ArtinBraid B3=((!ArtinBraid(PreferredPrefix(B)))*F*(PreferredPrefix(B2))).MakeLCF(); 
+ArtinBraid B3=((!ArtinBraid(PreferredPrefix(B)))*F*(PreferredPrefix(B2))).MakeLCF();
 
 ArtinFactor F2=ArtinFactor(B2.Index(),0);
 
@@ -2632,18 +2632,18 @@ return F2;
 /////////////////////////////////////////////////////////////
 //
 //  Returns_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a simple factor
-//                 F such that B^F is in its SSS, computes the iterated transports 
+//                 F such that B^F is in its SSS, computes the iterated transports
 //                 of F for sliding that send B to an element in the circuit of B^F.
 //
 /////////////////////////////////////////////////////////////
 
 
-list<ArtinFactor> Returns_Sliding(ArtinBraid B, ArtinFactor F) 
+list<ArtinFactor> Returns_Sliding(ArtinBraid B, ArtinFactor F)
 {
  list<ArtinFactor> ret;
  list<ArtinFactor>::iterator it=ret.end();
  ArtinBraid B1=B;
- sint16 i, N=1;  
+ sint16 i, N=1;
 
 
  B1=Sliding(B1);
@@ -2656,12 +2656,12 @@ list<ArtinFactor> Returns_Sliding(ArtinBraid B, ArtinFactor F)
 
 while(it==ret.end())
 {
- ret.push_back(F);   
+ ret.push_back(F);
 
  B1=B;
  for(i=0; i<N; i++)
  {
-   F=Transport_Sliding(B1,F); 
+   F=Transport_Sliding(B1,F);
    B1=Sliding(B1);
  }
 
@@ -2683,8 +2683,8 @@ return ret;
 
 /////////////////////////////////////////////////////////////
 //
-//  Pullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a 
-//                          simple factor F such that B^F is super summit, 
+//  Pullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a
+//                          simple factor F such that B^F is super summit,
 //                          computes the pullback of F at s(B) for sliding.
 //
 /////////////////////////////////////////////////////////////
@@ -2700,10 +2700,10 @@ ArtinFactor Pullback_Sliding(ArtinBraid B, ArtinFactor F)
 
  ArtinFactor F2=ArtinFactor(B.Index());
  F2=PreferredSuffix(B3);
-   
+
  ArtinBraid C=ArtinBraid(B.Index());
  C=RightMeet(B2,ArtinBraid(F2));
- 
+
 
  B2=(B2*(!C)).MakeLCF();
 
@@ -2726,8 +2726,8 @@ ArtinFactor Pullback_Sliding(ArtinBraid B, ArtinFactor F)
 
 /////////////////////////////////////////////////////////////
 //
-//  MainPullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a 
-//                      simple factor F, computes the first repeated iterated 
+//  MainPullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a
+//                      simple factor F, computes the first repeated iterated
 //                      pullback for cyclic sliding of F.
 //
 /////////////////////////////////////////////////////////////
@@ -2739,13 +2739,13 @@ ArtinFactor MainPullback_Sliding(ArtinBraid B, ArtinFactor F)
 list<ArtinFactor> ret;
 list<ArtinFactor>::iterator it=ret.end();
 
-ArtinBraid B2=B; 
+ArtinBraid B2=B;
 
 list<ArtinBraid> T=Trajectory_Sliding(B);
 list<ArtinBraid>::reverse_iterator itb;
 
 if(F.CompareWithDelta())
-  return F;  
+  return F;
 
 
 ArtinFactor F2=F;
@@ -2776,7 +2776,7 @@ return *it;
 
 
 
-ArtinFactor MinSC(ArtinBraid B, ArtinFactor F) 
+ArtinFactor MinSC(ArtinBraid B, ArtinFactor F)
 {
   ArtinFactor F2=MinSSS(B,F);
 
@@ -2871,12 +2871,12 @@ list<list<ArtinBraid> > SC(ArtinBraid B)
   list<ArtinBraid>::iterator itb;
 
   ArtinBraid B2=SendToSC(B);
-  list<ArtinBraid> T=Trajectory_Sliding(B2);  
-  
+  list<ArtinBraid> T=Trajectory_Sliding(B2);
+
   sc.push_back(Trajectory_Sliding(B2));
 
   B2=((!ArtinBraid(ArtinFactor(B.Index(),1)))*(B2)*ArtinFactor(B.Index(),1)).MakeLCF();
- 
+
   for(itb=(*sc.begin()).begin(); itb!=(*sc.begin()).end(); itb++)
     {
       if(B2==*itb)
@@ -2887,7 +2887,7 @@ list<list<ArtinBraid> > SC(ArtinBraid B)
   if(itb==(*sc.begin()).end())
     sc.push_back(Trajectory_Sliding(B2));
 
- 
+
   list<list<ArtinBraid> >::iterator it=sc.begin(), it2;
 
   while(it!=sc.end())
@@ -2897,8 +2897,8 @@ list<list<ArtinBraid> > SC(ArtinBraid B)
 
       for(itf=Min.begin(); itf!=Min.end(); itf++)
 	{
-	  F=*itf;	  	  
-      B2=((!ArtinBraid(F))*(*(*it).begin())*F).MakeLCF();     	  
+	  F=*itf;
+      B2=((!ArtinBraid(F))*(*(*it).begin())*F).MakeLCF();
 	  T=Trajectory_Sliding(B2);
  	  for(itb=T.begin(); itb!=T.end(); itb++)
 	    {
@@ -2910,11 +2910,11 @@ list<list<ArtinBraid> > SC(ArtinBraid B)
 	      if(it2!=sc.end())
 		break;
 	    }
- 
+
 	  if(itb==T.end())
 	    {
 	      sc.push_back(T);
-	      B2=((!ArtinBraid(ArtinFactor(B.Index(),1)))*(*T.begin())*ArtinFactor(B.Index(),1)).MakeLCF(); 
+	      B2=((!ArtinBraid(ArtinFactor(B.Index(),1)))*(*T.begin())*ArtinFactor(B.Index(),1)).MakeLCF();
 	      for(itb=T.begin();itb!=T.end(); itb++)
 		{
 		  if(B2==*itb)
@@ -2927,7 +2927,7 @@ list<list<ArtinBraid> > SC(ArtinBraid B)
       it++;
     }
   return sc;
-} 
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -3128,7 +3128,7 @@ list<list<ArtinBraid> > SC(ArtinBraid B, list<ArtinFactor> & mins, list<sint16> 
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  AreConjugateSC(B1,B2,C)  Determines if the braids B1 and B2 are
-//                           conjugate by testing their set of sliding circuits, 
+//                           conjugate by testing their set of sliding circuits,
 //                           and computes a conjugating element C.
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -3205,7 +3205,7 @@ bool AreConjugateSC(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  AreConjugateSC2(B1,B2,C)  Determines if the braids B1 and B2 are
-//                           conjugate by the procedure of contruct SC(B1), 
+//                           conjugate by the procedure of contruct SC(B1),
 //                           and computes a conjugating element C.
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -3213,47 +3213,47 @@ bool AreConjugateSC(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
 
 bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
 {
-  list<list<ArtinBraid> > sc; 
+  list<list<ArtinBraid> > sc;
   sint16 n=B1.Index();
   ArtinFactor F=ArtinFactor(n);
   list<ArtinFactor> Min;
   list<ArtinFactor>::iterator itf, itf2;
   list<ArtinBraid>::iterator itb;
-  
-  ArtinBraid C1=ArtinBraid(n), C2=ArtinBraid(n);
-  ArtinBraid BT1=SendToSC(B1,C1), BT2=SendToSC(B2,C2); 
 
-  ArtinBraid D1=ArtinBraid(n), D2=ArtinBraid(n); 
+  ArtinBraid C1=ArtinBraid(n), C2=ArtinBraid(n);
+  ArtinBraid BT1=SendToSC(B1,C1), BT2=SendToSC(B2,C2);
+
+  ArtinBraid D1=ArtinBraid(n), D2=ArtinBraid(n);
 
   list<ArtinFactor> mins;
   list<sint16> prev;
-  
+
   sint16 current=0;
-  sint16 current2=0; 
+  sint16 current2=0;
   mins.clear();
   prev.clear();
 
   list<sint16>::iterator itprev;
   list<ArtinFactor>::iterator itmins;
-  sint16 i;  
-  
+  sint16 i;
+
   mins.push_back(ArtinFactor(B1.Index(),0));
   prev.push_back(1);
 
   list<ArtinBraid> T=Trajectory_Sliding(BT1);
-  
-  sc.push_back(Trajectory_Sliding(BT1));  
- 
+
+  sc.push_back(Trajectory_Sliding(BT1));
+
   list<list<ArtinBraid> >::iterator it=sc.begin(), it2;
 
-  while(it!=sc.end()) 
-    {    
-      current++;               
+  while(it!=sc.end())
+    {
+      current++;
        current2++;
        D2=ArtinBraid(n);
        for(itb=(*it).begin(); itb!=(*it).end(); itb++)
 	    {
-	      if(*itb==BT2) 
+	      if(*itb==BT2)
           {
            while(current2!=1)
            {
@@ -3268,31 +3268,31 @@ bool AreConjugateSC2(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C)
             current2=*itprev;
            }
           C=(C1*D1*D2*(!C2)).MakeLCF();
-          return true;  
+          return true;
           }
-	    D2=D2*PreferredPrefix(*itb);         
+	    D2=D2*PreferredPrefix(*itb);
         }
-         
-      
-  Min=MinSC(*(*it).begin()); 
 
-  for(itf=Min.begin(); itf!=Min.end(); itf++) 
+
+  Min=MinSC(*(*it).begin());
+
+  for(itf=Min.begin(); itf!=Min.end(); itf++)
 	 {
-	  F=*itf;   	  
-      BT1=((!ArtinBraid(F))*(*(*it).begin())*F).MakeLCF(); 
-          	  
-	  T=Trajectory_Sliding(BT1); 
- 	  for(itb=T.begin(); itb!=T.end(); itb++) 
+	  F=*itf;
+      BT1=((!ArtinBraid(F))*(*(*it).begin())*F).MakeLCF();
+
+	  T=Trajectory_Sliding(BT1);
+ 	  for(itb=T.begin(); itb!=T.end(); itb++)
 	    {
-	      for(it2=sc.begin(); it2!=sc.end(); it2++) 
+	      for(it2=sc.begin(); it2!=sc.end(); it2++)
 		{
-		  if(*itb==*(*it2).begin()) 
+		  if(*itb==*(*it2).begin())
 		    break;
 		}
-	      if(it2!=sc.end()) 
+	      if(it2!=sc.end())
 		break;
 	    }
-        
+
 	  if(itb==T.end())
 	    {
 	      sc.push_back(T);
@@ -3381,7 +3381,7 @@ list<list<sint16> > ConjugatingBraid(sint16 n, list<sint16> word, list<sint16> w
     ArtinBraid B2=ArtinBraid(n);
     ArtinBraid C = ArtinBraid(n);
     bool conj;
-    list<list<sint16> > rop; 
+    list<list<sint16> > rop;
     B1 = WordToBraid(word, n);
     B2 = WordToBraid(word2, n);
     B1.MakeLCF();
@@ -3535,5 +3535,80 @@ list<list<list<list<sint16> > > > SlidingCircuits(int n, list<sint16> word)
 
     return rop;
 }
+
+list<list<list<sint16>>> SendToSSS (int n, list<sint16> word)
+{
+    ArtinBraid B = ArtinBraid(n);
+    B = WordToBraid(word, n);
+    B.MakeLCF();
+    ArtinBraid C = ArtinBraid(n);
+    ArtinBraid Target = SendToSSS(B, C);
+    C.MakeLCF();
+    list<list<list<sint16>>> rop = {BraidToList(n, Target), BraidToList(n, C)};
+    return rop;
+}
+
+
+list<list<list<sint16>>> Trajectory(int n, list<sint16> word)
+{
+  ArtinBraid A = ArtinBraid(n);
+  A = WordToBraid(word, n);
+  A.MakeLCF();
+  list<ArtinBraid> T = Trajectory(A);
+  list<ArtinBraid>::iterator it;
+  list<list<list<sint16>>> rop;
+  for (it=T.begin(); it!= T.end(); it++)
+  {
+    rop.push_back(BraidToList(n,*it));
+  }
+  return rop;
+}
+
+list<list<list<sint16>>> SendToUSS (int n, list<sint16> word)
+{
+  ArtinBraid B = ArtinBraid(n);
+  B = WordToBraid(word, n);
+  B.MakeLCF();
+  ArtinBraid C = ArtinBraid(n);
+  ArtinBraid Target = SendToUSS(B, C);
+  C.MakeLCF();
+  list<list<list<sint16>>> rop = {BraidToList(n, Target), BraidToList(n, C)};
+  return rop;
+}
+
+list<list<list<sint16>>> SendToSC (int n, list<sint16> word)
+{
+  ArtinBraid B = ArtinBraid(n);
+  B = WordToBraid(word, n);
+  B.MakeLCF();
+  ArtinBraid C = ArtinBraid(n);
+  ArtinBraid Target = SendToSC(B, C);
+  C.MakeLCF();
+  list<list<list<sint16>>> rop = {BraidToList(n, Target), BraidToList(n, C)};
+  return rop;
+}
+
+list<list<list<list<sint16>>>> CyclicSlidings(int n, list<sint16> word)
+{
+  ArtinBraid B = ArtinBraid(n);
+  B = WordToBraid(word, n);
+  B.MakeLCF();
+  list<list<ArtinBraid>> C = SC(B);
+  list<list<ArtinBraid> >::iterator it;
+  list<ArtinBraid>::iterator itb;
+  list<list<list<list<sint16>>>> rop;
+  list<list<list<sint16>>> ropp;
+  for(it=C.begin(); it!=C.end(); it++)
+  {
+    ropp.clear();
+    for(itb=(*it).begin(); itb!=(*it).end(); itb++)
+    {
+      ropp.push_back(BraidToList(n, *itb));
+    }
+    rop.push_back(ropp);
+  }
+
+  return rop;
+  }
 
 }

@@ -554,7 +554,7 @@ char * FileName(sint16 iteration, sint16 max_iteration, sint16 type,
 
 ///////////////////////////////////////////////////////
 //
-//  Reverse(B)  computes the revese of a braid B, 
+//  Reverse(B)  computes the revese of a braid B,
 //              that is, B written backwards.
 //              B must be given in left canonical form.
 //
@@ -566,9 +566,9 @@ char * FileName(sint16 iteration, sint16 max_iteration, sint16 type,
 
 /////////////////////////////////////////////////////////////
 //
-//  RightMeet(B1,B2)  Given two braids B1 and B2, computes  
+//  RightMeet(B1,B2)  Given two braids B1 and B2, computes
 //                    their right gcd. That is, the greatest braid
-//                    B such that B1>B and B2>B. 
+//                    B such that B1>B and B2>B.
 //
 /////////////////////////////////////////////////////////////
 
@@ -579,9 +579,9 @@ ArtinBraid RightMeet(ArtinBraid B1, ArtinBraid B2);
 
 /////////////////////////////////////////////////////////////
 //
-//  LeftJoin(B1,B2)  Given two braids B1 and B2, computes  
+//  LeftJoin(B1,B2)  Given two braids B1 and B2, computes
 //                    their left lcm. That is, the smallest braid
-//                    B such that B1<B and B2<B. 
+//                    B such that B1<B and B2<B.
 //
 /////////////////////////////////////////////////////////////
 
@@ -590,9 +590,9 @@ ArtinBraid LeftJoin(ArtinBraid B1, ArtinBraid B2);
 
 /////////////////////////////////////////////////////////////
 //
-//  RightJoin(B1,B2)  Given two braids B1 and B2, computes  
+//  RightJoin(B1,B2)  Given two braids B1 and B2, computes
 //                    their right lcm. That is, the smallest braid
-//                    B such that B>B1 and B>B2. 
+//                    B such that B>B1 and B>B2.
 //
 /////////////////////////////////////////////////////////////
 
@@ -601,7 +601,7 @@ ArtinBraid RightJoin(ArtinBraid B1, ArtinBraid B2);
 
 ///////////////////////////////////////////////////////
 //
-//  InitialFactor(B)  computes the initial factor of a braid B, 
+//  InitialFactor(B)  computes the initial factor of a braid B,
 //                    given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -610,7 +610,7 @@ ArtinFactor  InitialFactor(ArtinBraid B);
 
 ///////////////////////////////////////////////////////
 //
-//  PreferredPrefix(B)  computes the preferred prefix of a braid B, 
+//  PreferredPrefix(B)  computes the preferred prefix of a braid B,
 //                      given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -620,7 +620,7 @@ ArtinFactor  PreferredPrefix(ArtinBraid B);
 
 ///////////////////////////////////////////////////////
 //
-//  Sliding(B)  computes the cyclic sliding of a braid B, 
+//  Sliding(B)  computes the cyclic sliding of a braid B,
 //                given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -629,7 +629,7 @@ ArtinFactor  PreferredPrefix(ArtinBraid B);
 
 ///////////////////////////////////////////////////////
 //
-//  PreferredSuffix(B)  computes the preferred suffix of a braid B, 
+//  PreferredSuffix(B)  computes the preferred suffix of a braid B,
 //                      given in Left Canonical Form
 //
 ///////////////////////////////////////////////////////
@@ -639,9 +639,9 @@ ArtinFactor  PreferredSuffix(ArtinBraid B);
 
 /////////////////////////////////////////////////////////////
 //
-//  Trajectory_Sliding(B)  Computes the trajectory under cyclic sliding 
-//                         of a braid B, that is, a list containing eta^k(B), 
-//                         for k=0,1,... until the first repetition. 
+//  Trajectory_Sliding(B)  Computes the trajectory under cyclic sliding
+//                         of a braid B, that is, a list containing eta^k(B),
+//                         for k=0,1,... until the first repetition.
 //
 /////////////////////////////////////////////////////////////
 
@@ -649,7 +649,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B);
 
 /////////////////////////////////////////////////////////////
 //
-//  Trajectory_Sliding(B,C,d)  Computes the trajectory of a braid B for cyclic sliding,   
+//  Trajectory_Sliding(B,C,d)  Computes the trajectory of a braid B for cyclic sliding,
 //                     a braid C that conjugates B to the
 //                     first element of a closed orbit under sliding,
 //                     and the number d of slidings needed to reach that element
@@ -660,7 +660,7 @@ list<ArtinBraid > Trajectory_Sliding(ArtinBraid B, ArtinBraid & C, sint16 & d);
 
 /////////////////////////////////////////////////////////////
 //
-//  SendToSC(B)  Computes a braid conjugate to B that 
+//  SendToSC(B)  Computes a braid conjugate to B that
 //                belongs to its Sliding Circuits Set.
 //
 /////////////////////////////////////////////////////////////
@@ -670,8 +670,8 @@ ArtinBraid SendToSC(ArtinBraid B);
 
 /////////////////////////////////////////////////////////////
 //
-//  SendToSC(B,C)  Computes a braid conjugate to B that 
-//                  belongs to its Sliding Circuits Set, and a braid 
+//  SendToSC(B,C)  Computes a braid conjugate to B that
+//                  belongs to its Sliding Circuits Set, and a braid
 //                  C that conjugates B to the result.
 //
 /////////////////////////////////////////////////////////////
@@ -693,20 +693,20 @@ ArtinFactor Transport_Sliding(ArtinBraid B, ArtinFactor F);
 /////////////////////////////////////////////////////////////
 //
 //  Returns_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a simple factor
-//                 F such that B^F is in its SSS, computes the iterated transports 
+//                 F such that B^F is in its SSS, computes the iterated transports
 //                 of F for sliding that send B to an element in the circuit of B^F.
 //
 /////////////////////////////////////////////////////////////
 
 
-list<ArtinFactor> Returns_Sliding(ArtinBraid B, ArtinFactor F); 
+list<ArtinFactor> Returns_Sliding(ArtinBraid B, ArtinFactor F);
 
 
 
 /////////////////////////////////////////////////////////////
 //
-//  Pullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a 
-//                          simple factor F such that B^F is super summit, 
+//  Pullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a
+//                          simple factor F such that B^F is super summit,
 //                          computes the pullback of F at s(B) for sliding.
 //
 /////////////////////////////////////////////////////////////
@@ -717,8 +717,8 @@ ArtinFactor Pullback_Sliding(ArtinBraid B, ArtinFactor F);
 
 /////////////////////////////////////////////////////////////
 //
-//  MainPullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a 
-//                      simple factor F, computes the first repeated iterated 
+//  MainPullback_Sliding(B,F)   Given a braid B (in its SC and in LCF), and a
+//                      simple factor F, computes the first repeated iterated
 //                      pullback for cyclic sliding of F.
 //
 /////////////////////////////////////////////////////////////
@@ -792,7 +792,7 @@ void PrintSC(list<list<ArtinBraid> > &  sc, list<sint16> word, sint16 n,
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  AreConjugateSC(B1,B2,C)  Determines if the braids B1 and B2 are
-//                           conjugate by testing their set of sliding circuits, 
+//                           conjugate by testing their set of sliding circuits,
 //                           and computes a conjugating element C.
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -804,7 +804,7 @@ bool AreConjugateSC(ArtinBraid B1, ArtinBraid B2, ArtinBraid & C);
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  AreConjugateSC2(B1,B2,C)  Determines if the braids B1 and B2 are
-//                           conjugate by the procedure of contruct SC(B1), 
+//                           conjugate by the procedure of contruct SC(B1),
 //                           and computes a conjugating element C.
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -830,6 +830,11 @@ list<list<list<list<sint16> > > > UltraSummitSet(int n, list<sint16> word);
 sint16 thurstontype(int n, list<sint16> word);
 sint16 Rigidity_ext(int n, list<sint16> word);
 list<list<list<list<sint16> > > > SlidingCircuits(int n, list<sint16> word);
+list<list<list<sint16>>> SendToSSS(int n, list<sint16> word);
+list<list<list<sint16>>> SendToUSS(int n, list<sint16> word);
+list<list<list<sint16>>> SendToSC(int n, list<sint16> word);
+list<list<list<sint16>>> Trajectory(int n, list<sint16> word);
+list<list<list<list<sint16>>>> CyclicSlidings(int n, list<sint16> word);
 
 
 } // namespace Braiding
