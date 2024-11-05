@@ -5,5 +5,5 @@ AM_INIT_AUTOMAKE([foreign -Wall])
 AM_PROG_AR
 AC_PROG_CXX
 LT_INIT
-AC_CONFIG_FILES([Makefile lib/Makefile])
+AC_CONFIG_FILES([Makefile lib/Makefile libbraiding.pc])
 AC_OUTPUT

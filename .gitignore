@@ -4,6 +4,7 @@ lib/cbraid.o
 lib/libcbraid.a
 .depends
 braiding
+libbraiding.pc
 braiding_main.o
 speedtest
 speedtest.o
