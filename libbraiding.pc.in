@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libbraiding
+Name: @PACKAGE_NAME@
 URL: https://github.com/miguelmarco/libbraiding 
 Description: Braiding (https://github.com/jeanluct/cbraid) as a shared library 
 Version: @PACKAGE_VERSION@
