@@ -10,3 +10,17 @@ speedtest
 speedtest.o
 test
 test.o
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+build-aux/
+config.log
+config.status
+configure
+lib/.deps/
+lib/Makefile
+lib/Makefile.in
+libtool
+m4/
+
