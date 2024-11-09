@@ -8,4 +8,3 @@ AC_PROG_CXX
 LT_INIT
 AC_CONFIG_FILES([Makefile lib/Makefile libbraiding.pc])
 AC_OUTPUT
-s
