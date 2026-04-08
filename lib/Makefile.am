@@ -7,6 +7,6 @@ AM_CPPFLAGS = -Wall -fPIC -I$(LIBCBRAID_INCLUDEDIR) $(CPPFLAGS_CLN)
 if CPPDEBUG
 AM_CPPFLAGS += -g
 else
-# Only optimize when the DEBUG flat is unset.
+# Only optimize when the DEBUG flag is unset.
 AM_CPPFLAGS += -O
 endif
